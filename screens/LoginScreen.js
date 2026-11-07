@@ -1,5 +1,6 @@
 import Lucide from "@react-native-vector-icons/lucide";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import * as Font from "expo-font";
 import {
     View,
     Text,
@@ -11,10 +12,30 @@ import {
 } from "react-native";
 
 export default function LoginScreen() {
-    return (
-        <View style={{ flex: 1, backgroundColor: "#E8ECF8" }}>
-            <StatusBar barStyle="dark-content" backgroundColor="#E8ECF8" />
+    useEffect(() => {
+        const fonts = [
+            "PlusJakartaSans-Regular",
+            "PlusJakartaSans-Medium",
+            "PlusJakartaSans-SemiBold",
+            "PlusJakartaSans-Bold",
+        ];
 
+        console.log("========== FONT STATUS ==========");
+
+        fonts.forEach((font) => {
+            const loaded = Font.isLoaded(font);
+
+            console.log(`${font}: ${loaded ? "LOADED" : "NOT LOADED"}`);
+        });
+
+        console.log("=================================");
+    }, []);
+
+    const [nimFocused, setNimFocused] = useState(false);
+    const [passwordFocused, setPasswordFocused] = useState(false);
+
+    return (
+        <View style={{ width: "100%", flex: 1, backgroundColor: "#E8ECF8" }}>
             <ScrollView
                 contentContainerStyle={{
                     flexGrow: 1,
@@ -31,8 +52,7 @@ export default function LoginScreen() {
                         backgroundColor: "#FFFFFF",
                         borderRadius: 10,
                         paddingHorizontal: 18,
-                        paddingTop: 24,
-                        paddingBottom: 28,
+                        paddingVertical: 30,
                         shadowColor: "#000000",
                         shadowOffset: {
                             width: 0,
@@ -42,8 +62,6 @@ export default function LoginScreen() {
                         shadowRadius: 3,
                         elevation: 5,
                     }}>
-
-
                     {/* Logo */}
                     <View
                         style={{
@@ -60,11 +78,10 @@ export default function LoginScreen() {
                         />
                     </View>
 
-
                     {/* Header */}
                     <Text
                         style={{
-                            fontSize: 20,
+                            fontSize: 28,
                             fontWeight: "700",
                             color: "#06264A",
                             textAlign: "center",
@@ -74,16 +91,15 @@ export default function LoginScreen() {
 
                     <Text
                         style={{
-                            fontSize: 10,
-                            fontStyle: "italic",
+                            fontSize: 20,
+                            fontFamily: "Corinthia-Bold",
                             color: "#999999",
                             textAlign: "center",
                             marginTop: 5,
                             marginBottom: 30,
                         }}>
-                        Bringing The Future
+                        Always The First
                     </Text>
-
 
                     {/* NIM */}
                     <View style={{ marginBottom: 14 }}>
@@ -103,6 +119,7 @@ export default function LoginScreen() {
                                 flexDirection: "row",
                                 alignItems: "center",
                                 backgroundColor: "#F3F3F7",
+                                borderColor: nimFocused ? "#000000" : "#E9E9EF",
                                 borderWidth: 1,
                                 borderColor: "#E9E9EF",
                                 borderRadius: 9,
@@ -115,14 +132,20 @@ export default function LoginScreen() {
                                     color: "#202020",
                                     paddingVertical: 0,
                                 }}
+                                onFocus={() => setNimFocused(true)}
+                                onBlur={() => setNimFocused(false)}
                                 placeholder=""
                                 placeholderTextColor="#A0A0A0"
                             />
 
-                            <Lucide name="user" size={16} color="#A0A0A0" style={{ marginRight: 10 }} />
+                            <Lucide
+                                name="user"
+                                size={16}
+                                color="#A0A0A0"
+                                style={{ marginRight: 10 }}
+                            />
                         </View>
                     </View>
-
 
                     {/* Password */}
                     <View style={{ marginBottom: 14 }}>
@@ -178,10 +201,14 @@ export default function LoginScreen() {
                                 placeholder=""
                                 placeholderTextColor="#A0A0A0"
                             />
-                            <Lucide name="lock" size={16} color="#A0A0A0" style={{ marginRight: 10 }} />
+                            <Lucide
+                                name="lock"
+                                size={16}
+                                color="#A0A0A0"
+                                style={{ marginRight: 10 }}
+                            />
                         </View>
                     </View>
-
 
                     {/* Button Sign in */}
                     <TouchableOpacity
@@ -211,7 +238,6 @@ export default function LoginScreen() {
                             Sign In
                         </Text>
                     </TouchableOpacity>
-
 
                     {/* Contact Support */}
                     <View
