@@ -69,7 +69,7 @@ export default function LoginScreen() {
                             marginBottom: 12,
                         }}>
                         <Image
-                            source={require("../assets/stikom-logo.png")}
+                            source={require("../../assets/stikom-logo.png")}
                             style={{
                                 width: 105,
                                 height: 105,
