@@ -1,6 +1,7 @@
 import Lucide from "@react-native-vector-icons/lucide";
 import React, { useEffect, useState } from "react";
 import * as Font from "expo-font";
+import { router } from 'expo-router';
 import {
     View,
     Text,
@@ -212,6 +213,7 @@ export default function LoginScreen() {
 
                     {/* Button Sign in */}
                     <TouchableOpacity
+                        onPress={() => router.replace('/(tabs)')}
                         activeOpacity={0.8}
                         style={{
                             height: 43,
