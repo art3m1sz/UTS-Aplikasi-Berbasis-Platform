@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import Lucide from "@react-native-vector-icons/lucide";
 import * as Font from "expo-font";
-import BottomNavigation from "../components/BottomNavigation";
 
 // Dummy Data
 const tasks = [
@@ -429,8 +428,6 @@ export default function DashboardScreen() {
                 </View>
             </ScrollView>
 
-            {/* BOTTOM NAVIGATION */}
-            <BottomNavigation />
         </View>
     );
 }
