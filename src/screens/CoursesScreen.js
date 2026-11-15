@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Lucide from "@react-native-vector-icons/lucide";
 import Header from "../components/Header";
+import { router } from 'expo-router';
 
 const initialCourses = [
     {
@@ -171,6 +172,7 @@ export default function CoursesScreen() {
                         filteredCourses.map((course) => (
                             <TouchableOpacity
                                 key={course.id}
+                                onPress={() => router.push(`/courses/${course.id}`)}
                                 activeOpacity={0.9}
                                 style={{
                                     minHeight: 130,

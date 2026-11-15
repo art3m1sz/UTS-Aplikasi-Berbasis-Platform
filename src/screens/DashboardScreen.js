@@ -6,9 +6,11 @@ import {
     ScrollView,
     StatusBar,
     SafeAreaView,
+    TouchableOpacity,
 } from "react-native";
 import Lucide from "@react-native-vector-icons/lucide";
 import * as Font from "expo-font";
+import { router } from 'expo-router';
 
 // Dummy Data
 const tasks = [
@@ -284,7 +286,10 @@ export default function DashboardScreen() {
                     {/* Course Cards */}
                     <View style={{ gap: 10 }}>
                         {courses.map((course) => (
-                            <View
+                            <TouchableOpacity
+                                onPress={() =>
+                                    router.push(`/courses/${course.id}`)
+                                }
                                 key={course.id}
                                 style={{
                                     backgroundColor: "#FFFFFF",
@@ -422,12 +427,11 @@ export default function DashboardScreen() {
                                         }}
                                     />
                                 </View>
-                            </View>
+                            </TouchableOpacity>
                         ))}
                     </View>
                 </View>
             </ScrollView>
-
         </View>
     );
 }
