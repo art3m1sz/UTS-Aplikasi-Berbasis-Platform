@@ -10,7 +10,8 @@ import {
 } from "react-native";
 import Lucide from "@react-native-vector-icons/lucide";
 import * as Font from "expo-font";
-import { router } from 'expo-router';
+import { router } from "expo-router";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // Dummy Data
 const tasks = [
@@ -42,6 +43,7 @@ const courses = [
 ];
 
 export default function DashboardScreen() {
+    const insets = useSafeAreaInsets();
     return (
         <View
             style={{
@@ -52,7 +54,8 @@ export default function DashboardScreen() {
             {/* HEADER */}
             <View
                 style={{
-                    height: 58,
+                    height: 58 + insets.top,
+                    paddingTop: insets.top,
                     backgroundColor: "#FFFFFF",
                     flexDirection: "row",
                     alignItems: "center",
