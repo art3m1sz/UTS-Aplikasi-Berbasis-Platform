@@ -8,6 +8,9 @@ import {
 } from 'react-native';
 import Lucide from '@react-native-vector-icons/lucide';
 import Header from '../components/Header';
+import {router, useLocalSearchParams } from 'expo-router';
+
+
 
 const assignment = {
     title: 'Implementasi Sorting & Searching',
@@ -50,6 +53,7 @@ function Card({ children }) {
 }
 
 export default function AssignmentSubmissionScreen() {
+    const { courseId } = useLocalSearchParams();
     const [comment, setComment] = useState('');
     const [agreed, setAgreed] = useState(false);
 
@@ -476,6 +480,7 @@ export default function AssignmentSubmissionScreen() {
                     {/* Submit button */}
                     <TouchableOpacity
                         activeOpacity={0.8}
+                        onPress={() => router.replace(`/courses/${courseId}/assignments/success`)}
                         style={{
                             flexDirection: 'row',
                             alignItems: 'center',
