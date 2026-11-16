@@ -7,4 +7,4 @@ export default function CoursesLayout() {
             <Stack.Screen name="[courseId]" />
         </Stack>
     );
-}
+}           

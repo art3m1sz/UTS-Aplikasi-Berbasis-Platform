@@ -6,7 +6,7 @@ import {
     ScrollView,
     TouchableOpacity,
 } from 'react-native';
-import { useLocalSearchParams } from 'expo-router';
+import {router, useLocalSearchParams } from 'expo-router';
 import Lucide from '@react-native-vector-icons/lucide';
 import CourseDetailLayout from '../components/CourseDetailLayout';
 
@@ -35,7 +35,7 @@ const assignments = [
     },
 ];
 
-function AssignmentCard({ assignment }) {
+function AssignmentCard({ assignment, courseId }) {
     const isGraded = assignment.status === 'graded';
 
     return (
@@ -135,23 +135,27 @@ function AssignmentCard({ assignment }) {
 
                 <TouchableOpacity
                     activeOpacity={0.8}
+                    onPress={() => {
+                        if (!isGraded) {
+                            router.push('/courses/${courseId}/assignments/submission');
+                        }
+                    }}
                     style={{
                         backgroundColor: isGraded ? 'transparent' : '#082D78',
                         paddingHorizontal: isGraded ? 0 : 12,
                         paddingVertical: 6,
                         borderRadius: 6,
-                    }}
-                >
-                    <Text
-                        style={{
-                            fontFamily: 'PlusJakartaSans-Bold',
-                            fontSize: 10,
-                            color: isGraded ? '#082D78' : '#FFFFFF',
-                        }}
-                    >
-                        {isGraded ? 'Lihat Feedback' : 'Kumpulkan'}
-                    </Text>
-                </TouchableOpacity>
+                    }}>
+                        <Text
+                            style={{
+                                fontFamily: 'PlusJakartaSans-Bold',
+                                fontSize: 10,
+                                color: isGraded ? '#082D78' : '#FFFFFF',
+                            }}
+                        >
+                            {isGraded ? 'Lihat Feedback' : 'Kumpulkan'}
+                        </Text>
+                    </TouchableOpacity>
             </View>
         </View>
     );
@@ -210,6 +214,7 @@ export default function CourseAssignmentsScreen() {
                     <AssignmentCard
                         key={assignment.id}
                         assignment={assignment}
+                        courseId={courseId}
                     />
                 ))}
 
